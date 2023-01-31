@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <form action="/Register" method="post">
+  <div class="container">
+    <h1>Регистрация</h1>
+    <p>Пожалуйста, заполните форму для создания аккаунта</p>
+    <hr>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="может быть пустым" name="email" id="email">
+
+    <label for="login"><b>Логин для входа</b></label>
+    <input type="text" placeholder="Введите логин" name="login" id="login" required>
+
+    <label for="psw"><b>Пароль</b></label>
+    <input type="password" placeholder="Введитн пароль" name="psw" id="psw" required>
+    <hr>
+
+    <button type="submit" class="registerbtn">Зарегистрироваться</button>
+  </div>
+
+  <div class="container signin">
+    <p>Уже зарегистрированы? <a href="/Login">Авторизация</a>.</p>
+  </div>
+</form>
+</body>
+</html>

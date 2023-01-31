@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <form action="/Login" method="post">
+  <div class="container">
+    <h1>Авторизация</h1>
+
+    <p><label for="login"><b>Логин для входа</b></label></p>
+    <input type="text" placeholder="Введите логин" name="login" id="login" required>
+
+    <p><label for="psw"><b>Пароль</b></label></p>
+    <input type="password" placeholder="Введитн пароль" name="psw" id="psw" required>
+
+   <p><button type="submit" class="registerbtn">Авторизироваться</button></p>
+  </div>
+</form>
+<p>{% if no_login %}
+    <h3>такой логин не найден, попробуйте еще раз или зарегистрируйтесь</h3>
+      <p><a href="/Register">Регистрация</a></p>
+
+    {% endif %}</p>
+<p>{% if no_password %}
+    <h3>неверно введен пароль</h3>
+    {% endif %}</p>
+
+</body>
+</html>

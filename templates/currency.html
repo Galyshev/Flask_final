@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер валюты</title>
+</head>
+<body>
+<form action="/Currency" method="post">
+    <p>Для рзавершения работы - нажмите на  <a href="/Logout">Выход</a></p>
+
+    {% if bank_from_form == 'NBU'%}
+    <p><b>Выберите банк</b></p>
+    <input type="radio" class="NBU" name="bank" value="NBU" checked>
+    <label for class="NBU">NBU</label><br>
+    <input type="radio" class="Privatbank" name="bank" value="Privatbank">
+    <label for class="Privatbank">Privatbank</label><br>
+    <input type="radio" class="Monobank" name="bank" value="Monobank">
+    <label for class="Monobank">Monobank</label>
+
+    {% elif bank_from_form == 'Privatbank'%}
+    <p><b>Выберите банк</b></p>
+    <input type="radio" class="NBU" name="bank" value="NBU">
+    <label for class="NBU">NBU</label><br>
+    <input type="radio" class="Privatbank" name="bank" value="Privatbank" checked>
+    <label for class="Privatbank">Privatbank</label><br>
+    <input type="radio" class="Monobank" name="bank" value="Monobank">
+    <label for class="Monobank">Monobank</label>
+
+    {% else %}
+    <p><b>Выберите банк</b></p>
+    <input type="radio" class="NBU" name="bank" value="NBU">
+    <label for class="NBU">NBU</label><br>
+    <input type="radio" class="Privatbank" name="bank" value="Privatbank">
+    <label for class="Privatbank">Privatbank</label><br>
+    <input type="radio" class="Monobank" name="bank" value="Monobank" checked>
+    <label for class="Monobank">Monobank</label>
+
+    {% endif %}
+
+    <p><b>Базовая валюта</b></p>
+    {% if curr_base_from_form %}
+    <select name="currency_1">
+        <option value="{{ curr_base_from_form }}">{{ curr_base_from_form }}</option>
+        {% for current in lst_base_cur %}
+        <option value="{{ current.cur  }}">{{ current.cur }}</option>
+        {% endfor %}
+    </select>
+    {% else %}
+    <select name="currency_1">
+        {% for current in data_cur %}
+        <option value="{{ current.cur }}">{{ current.cur }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+
+    <p><b>Конвертируемая валюта</b></p>
+    {% if curr_conv_from_form %}
+    <select name="currency_2">
+        <option value="{{ curr_conv_from_form }}">{{ curr_conv_from_form }}</option>
+        {% for current in lst_conv_cur %}
+        <option value="{{ current.cur  }}">{{ current.cur }}</option>
+        {% endfor %}
+    </select>
+    {% else %}
+    <select name="currency_2">
+        {% for current in data_cur %}
+        <option value="{{ current.cur }}">{{ current.cur }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+
+    {% if date_from_form %}
+        <p><b>Выберите дату</b></p>
+    <label for class="date"></label>
+    <input type="date" class="date" name="date"
+           value="{{ date_from_form }}" min="2022-11-25" max="2023-12-31">
+    {% else %}
+    <p><input type="submit" value="Submit"></p>
+    <p><b>Выберите дату</b></p>
+    <label for class=date"></label>
+    <input type="date" class="date" name="date"
+           value="2023-01-18" min="2023-01-18" max="2023-12-31">
+    {% endif %}
+
+    <p><input type="submit" value="Submit"></p>
+
+</form>
+
+<p>{% if buy_exchange %}
+    <h1>Курс для банка {{ bank_from_form }} за {{ date_from_form }} </h1>
+    <p>За 1 {{ curr_conv_from_form }} </p>
+    <p>Продажа {{ buy_exchange }} {{ curr_base_from_form }}</p>
+    <p>Покупка {{ sell_exchange }} {{ curr_base_from_form }}</p>
+
+{% endif %}</p>
+
+</body>
+</html>
